@@ -43,13 +43,9 @@ export default function Gallery() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedIdx(null);
-      } else if (e.key === "ArrowRight") {
-        nextImage();
-      } else if (e.key === "ArrowLeft") {
-        prevImage();
-      }
+      if (e.key === "Escape") setSelectedIdx(null);
+      else if (e.key === "ArrowRight") nextImage();
+      else if (e.key === "ArrowLeft") prevImage();
     };
     if (selectedIdx !== null) {
       window.addEventListener("keydown", handleKeyDown);
@@ -59,34 +55,40 @@ export default function Gallery() {
 
   return (
     <section id="gallery" className="py-28 lg:py-36 bg-white relative overflow-hidden">
-      {/* Decorative luxury watermark */}
-      <div className="absolute right-0 top-1/4 -translate-y-1/2 translate-x-1/4 select-none pointer-events-none opacity-[0.03] hidden lg:block">
+      {/* Watermark */}
+      <div className="absolute right-0 top-1/4 -translate-y-1/2 translate-x-1/4 select-none pointer-events-none opacity-[0.02] hidden lg:block">
         <span className="font-serif text-[180px] lg:text-[240px] text-dark tracking-widest uppercase" style={{ writingMode: "vertical-rl" }}>
           SMILE
         </span>
       </div>
-      
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-gold-light/10 blur-[100px] -translate-y-1/2 pointer-events-none" />
+
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-primary-50/30 blur-[120px] -translate-y-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-gold bg-gold-light/35 px-4 py-1.5 rounded-full border border-gold/10 inline-block">
-            Sanctuary
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+            Our Clinic
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-4 mb-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
             Our Modern Clinic
           </h2>
-          <div className="gold-divider max-w-[120px] mx-auto my-5" />
-          <p className="text-dark/65 font-light max-w-md mx-auto text-sm md:text-base">
-            Take a visual tour inside our luxury dental care facility, where cutting-edge technology meets boutique comfort.
+          <div className="blue-divider max-w-[120px] mx-auto my-5" />
+          <p className="text-muted font-light max-w-md mx-auto text-sm md:text-base leading-relaxed">
+            Take a visual tour inside our premium dental care facility, where cutting-edge technology meets boutique comfort.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Luxury Asymmetrical / Modern Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {/* Image Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-10">
           {galleryImages.map((image, idx) => (
             <motion.div
               key={image.title}
@@ -95,37 +97,38 @@ export default function Gallery() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
               onClick={() => setSelectedIdx(idx)}
-              className="group relative aspect-[16/10] rounded-[32px] overflow-hidden bg-ivory cursor-pointer border border-gold/5 shadow-premium hover:shadow-premium-hover transition-luxury"
+              className="group relative aspect-[16/10] rounded-[28px] overflow-hidden bg-ivory cursor-pointer border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-500"
             >
-              {/* Image Frame with Slow Zoom */}
+              {/* Image with slow zoom */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <Image
                   src={image.src}
                   alt={`${image.title} at Smile Signature Dental Clinic`}
                   fill
-                  sizes="(max-w-md) 100vw, 600px"
+                  sizes="(max-width: 768px) 100vw, 600px"
                   className="object-cover object-center scale-100 group-hover:scale-105"
                   style={{ transition: "transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)" }}
+                  loading="lazy"
                 />
               </div>
 
-              {/* Luxury Glass overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 lg:p-10" />
-              
-              {/* Zoom icon button */}
-              <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center text-dark opacity-0 group-hover:opacity-100 transition-luxury shadow-md transform translate-y-2 group-hover:translate-y-0">
-                <ZoomIn className="w-5 h-5 text-gold-dark" />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Zoom icon */}
+              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center text-dark opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-md transform translate-y-2 group-hover:translate-y-0">
+                <ZoomIn className="w-4 h-4 text-primary" />
               </div>
 
-              {/* Title & description appearing on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 transform translate-y-6 group-hover:translate-y-0 transition-luxury opacity-0 group-hover:opacity-100 z-10 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gold mb-2 block">
-                  Studio Space {idx + 1}
+              {/* Title on hover */}
+              <div className="absolute bottom-0 left-0 right-0 p-7 transform translate-y-6 group-hover:translate-y-0 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 z-10 text-white">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary-200 mb-2 block">
+                  Space {idx + 1}
                 </span>
-                <h3 className="font-serif font-bold text-xl md:text-2xl mb-2 text-white">
+                <h3 className="font-serif font-bold text-lg md:text-xl mb-1.5 text-white">
                   {image.title}
                 </h3>
-                <p className="text-xs md:text-sm font-light text-white/70 max-w-sm leading-relaxed">
+                <p className="text-xs font-light text-white/70 max-w-sm leading-relaxed">
                   {image.desc}
                 </p>
               </div>
@@ -134,7 +137,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedIdx !== null && (
           <motion.div
@@ -144,16 +147,15 @@ export default function Gallery() {
             className="fixed inset-0 z-50 bg-dark/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 sm:p-8"
             onClick={() => setSelectedIdx(null)}
           >
-            {/* Close Button */}
             <button
               onClick={() => setSelectedIdx(null)}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:rotate-90 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold z-50 cursor-pointer"
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:rotate-90 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50 cursor-pointer"
               aria-label="Close Lightbox"
             >
               <X className="w-6 h-6" />
             </button>
 
-            {/* Pagination Controls */}
+            {/* Pagination */}
             <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-40 max-w-7xl mx-auto w-full px-6">
               <button
                 onClick={prevImage}
@@ -171,8 +173,8 @@ export default function Gallery() {
               </button>
             </div>
 
-            {/* Main Lightbox Frame */}
-            <div className="relative w-full max-w-4xl aspect-[16/10] rounded-[24px] overflow-hidden border border-white/10 bg-black/40 shadow-2xl z-30">
+            {/* Lightbox Frame */}
+            <div className="relative w-full max-w-4xl aspect-[16/10] rounded-[20px] overflow-hidden border border-white/10 bg-black/40 shadow-2xl z-30">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedIdx}
@@ -189,21 +191,21 @@ export default function Gallery() {
                     fill
                     priority
                     className="object-contain"
-                    sizes="(max-w-7xl) 100vw, 1200px"
+                    sizes="(max-width: 1280px) 100vw, 1200px"
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Image Details & Index Indicator */}
+            {/* Caption */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-center mt-8 max-w-xl px-4 pointer-events-none z-30"
             >
-              <div className="text-[11px] uppercase tracking-widest text-gold font-bold mb-2">
-                Gallery Space {selectedIdx + 1} of {galleryImages.length}
+              <div className="text-[11px] uppercase tracking-widest text-primary font-bold mb-2">
+                {selectedIdx + 1} of {galleryImages.length}
               </div>
               <h3 className="font-serif font-bold text-2xl md:text-3xl text-white mb-2">
                 {galleryImages[selectedIdx].title}

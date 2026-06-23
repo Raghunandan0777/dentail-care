@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import DoctorSection from "@/components/DoctorSection";
 import Gallery from "@/components/Gallery";
 import BeforeAfter from "@/components/BeforeAfter";
+import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingWidgets from "@/components/FloatingWidgets";
@@ -15,7 +16,7 @@ export default function Home() {
   const dentistSchema = {
     "@context": "https://schema.org",
     "@type": "Dentist",
-    "name": "Smile Signature Luxury Dental Clinic",
+    "name": "Smile Signature Premium Dental Clinic",
     "image": "https://smilesignature.com/images/hero-dentist.png",
     "@id": "https://smilesignature.com/#dentist",
     "url": "https://smilesignature.com",
@@ -64,13 +65,14 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <BookingSection />
         <Services />
         <WhyChooseUs />
         <DoctorSection />
-        <Gallery />
         <BeforeAfter />
+        <Gallery />
+        <BookingSection />
         <Testimonials />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer />

@@ -16,6 +16,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "Services", href: "#services" },
@@ -43,7 +55,7 @@ export default function Navbar() {
               <span className="font-serif text-xl md:text-2xl font-bold tracking-wide text-dark group-hover:text-primary transition-colors duration-300">
                 Smile Signature
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-primary font-medium -mt-1">
+              <span className="text-[11px] uppercase tracking-widest text-primary font-medium -mt-1">
                 Premium Dental Care
               </span>
             </div>
@@ -55,7 +67,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative text-[11px] uppercase tracking-widest font-semibold text-dark/70 hover:text-primary transition-colors duration-300 py-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1"
+                className="relative text-xs uppercase tracking-widest font-semibold text-dark/70 hover:text-primary transition-colors duration-300 py-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
@@ -67,7 +79,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <a
               href="#book-appointment"
-              className="px-6 py-2.5 rounded-full blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn"
+              className="px-6 py-2.5 rounded-full blue-gradient text-white font-semibold text-xs uppercase tracking-widest transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn"
             >
               Book Appointment
             </a>
@@ -76,7 +88,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-dark/75 hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
+            className="lg:hidden w-12 h-12 flex items-center justify-center text-dark/75 hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md cursor-pointer"
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
           >
@@ -93,7 +105,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 top-[72px] z-40 bg-white/97 backdrop-blur-xl lg:hidden flex flex-col px-8 py-12 gap-4 shadow-xl"
+            className="fixed inset-0 top-[72px] z-40 bg-white/97 backdrop-blur-xl lg:hidden flex flex-col px-8 py-12 gap-4 shadow-xl overflow-y-auto pb-28"
             aria-label="Mobile Navigation"
           >
             {navLinks.map((link, idx) => (
@@ -115,7 +127,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.3 }}
-              className="mt-6 px-8 py-4 rounded-full blue-gradient text-white text-center font-semibold text-[11px] uppercase tracking-widest hover:opacity-90 transition-all shadow-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark shine-btn"
+              className="mt-6 px-8 py-4 rounded-full blue-gradient text-white text-center font-semibold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark shine-btn shrink-0"
             >
               Book Appointment
             </motion.a>

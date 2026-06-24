@@ -50,15 +50,14 @@ export default function Services() {
   ];
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 70,
-        damping: 18,
-        delay: i * 0.08,
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+        delay: i * 0.06,
       },
     }),
   };
@@ -78,7 +77,7 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             Expertise
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -103,7 +102,7 @@ export default function Services() {
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -10, scale: 1.02 }}
                 tabIndex={0}
-                className="group relative bg-white rounded-[24px] p-8 border border-gray-100 hover:border-primary/20 shadow-card hover:shadow-card-hover transition-all duration-500 flex flex-col justify-between overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+                className="group relative bg-white rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 border border-gray-100 hover:border-primary/20 shadow-card hover:shadow-card-hover transition-all duration-500 flex flex-col justify-between overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer h-full"
               >
                 {/* Hover glow background */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.02),transparent_60%)] group-hover:bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06),transparent_60%)] pointer-events-none transition-all duration-500" />
@@ -117,7 +116,7 @@ export default function Services() {
                     <div className="w-12 h-12 rounded-2xl bg-primary-50 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-white transition-all duration-500 shadow-sm transform group-hover:scale-110 group-hover:rotate-6">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-primary bg-primary-50 group-hover:bg-primary-100 border border-primary/10 px-2.5 py-1 rounded-md transition-colors duration-300">
+                    <span className="text-[11px] uppercase font-bold tracking-widest text-primary bg-primary-50 group-hover:bg-primary-100 border border-primary/10 px-2.5 py-1 rounded-md transition-colors duration-300">
                       {service.badge}
                     </span>
                   </div>
@@ -145,9 +144,9 @@ export default function Services() {
                   </ul>
 
                   {/* Learn More link */}
-                  <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest font-semibold text-primary opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-1.5 text-xs uppercase tracking-widest font-semibold text-primary lg:opacity-0 lg:group-hover:opacity-100 lg:transform lg:translate-y-2 lg:group-hover:translate-y-0 opacity-100 transform translate-y-0 transition-all duration-300">
                     Learn More
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="w-3.5 h-3.5 lg:group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
               </motion.div>

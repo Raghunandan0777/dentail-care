@@ -75,7 +75,7 @@ export default function Gallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             Our Clinic
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -92,12 +92,12 @@ export default function Gallery() {
           {galleryImages.map((image, idx) => (
             <motion.div
               key={image.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
               onClick={() => setSelectedIdx(idx)}
-              className="group relative aspect-[16/10] rounded-[28px] overflow-hidden bg-ivory cursor-pointer border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-500"
+              className="group relative aspect-[16/10] rounded-[20px] sm:rounded-[28px] overflow-hidden bg-ivory cursor-pointer border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-500"
             >
               {/* Image with slow zoom */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -113,22 +113,22 @@ export default function Gallery() {
               </div>
 
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent lg:opacity-0 group-hover:opacity-100 opacity-100 transition-opacity duration-500" />
 
               {/* Zoom icon */}
-              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center text-dark opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-md transform translate-y-2 group-hover:translate-y-0">
+              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center text-dark lg:opacity-0 group-hover:opacity-100 opacity-100 transition-all duration-500 shadow-md transform lg:translate-y-2 group-hover:translate-y-0 translate-y-0">
                 <ZoomIn className="w-4 h-4 text-primary" />
               </div>
 
               {/* Title on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-7 transform translate-y-6 group-hover:translate-y-0 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 z-10 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary-200 mb-2 block">
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 transform lg:translate-y-6 lg:group-hover:translate-y-0 transition-all duration-500 ease-out lg:opacity-0 group-hover:opacity-100 opacity-100 translate-y-0 z-10 text-white">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-primary-200 mb-2 block">
                   Space {idx + 1}
                 </span>
                 <h3 className="font-serif font-bold text-lg md:text-xl mb-1.5 text-white">
                   {image.title}
                 </h3>
-                <p className="text-xs font-light text-white/70 max-w-sm leading-relaxed">
+                <p className="text-[13px] font-light text-white/70 max-w-sm leading-relaxed">
                   {image.desc}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export default function Gallery() {
           >
             <button
               onClick={() => setSelectedIdx(null)}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:rotate-90 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50 cursor-pointer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:rotate-90 duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50 cursor-pointer"
               aria-label="Close Lightbox"
             >
               <X className="w-6 h-6" />
@@ -159,14 +159,14 @@ export default function Gallery() {
             <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-40 max-w-7xl mx-auto w-full px-6">
               <button
                 onClick={prevImage}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center pointer-events-auto transition-all cursor-pointer hover:scale-105 active:scale-95"
+                className="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center pointer-events-auto transition-all cursor-pointer hover:scale-105 active:scale-95"
                 aria-label="Previous Image"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextImage}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center pointer-events-auto transition-all cursor-pointer hover:scale-105 active:scale-95"
+                className="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center pointer-events-auto transition-all cursor-pointer hover:scale-105 active:scale-95"
                 aria-label="Next Image"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -204,7 +204,7 @@ export default function Gallery() {
               transition={{ delay: 0.1 }}
               className="text-center mt-8 max-w-xl px-4 pointer-events-none z-30"
             >
-              <div className="text-[11px] uppercase tracking-widest text-primary font-bold mb-2">
+              <div className="text-xs uppercase tracking-widest text-primary font-bold mb-2">
                 {selectedIdx + 1} of {galleryImages.length}
               </div>
               <h3 className="font-serif font-bold text-2xl md:text-3xl text-white mb-2">

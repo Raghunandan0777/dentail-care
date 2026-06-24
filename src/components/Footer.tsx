@@ -34,7 +34,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-ivory pt-24 pb-8 relative overflow-hidden">
+    <footer className="bg-ivory pt-16 sm:pt-24 pb-8 relative overflow-hidden">
       {/* Top Divider */}
       <div className="blue-divider mb-20" />
 
@@ -43,7 +43,7 @@ export default function Footer() {
       <div className="absolute top-1/3 left-10 w-[200px] h-[200px] rounded-full bg-primary-50/10 blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16">
 
           {/* Column 1: Branding & Contact */}
           <div className="lg:col-span-4 flex flex-col items-start">
@@ -55,7 +55,7 @@ export default function Footer() {
                 <span className="font-serif text-xl font-bold tracking-wide text-dark">
                   Smile Signature
                 </span>
-                <span className="text-[10px] uppercase tracking-widest text-primary font-bold -mt-1">
+                <span className="text-xs uppercase tracking-widest text-primary font-bold -mt-1">
                   Premium Dental Care
                 </span>
               </div>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="lg:col-span-2 flex flex-col items-start">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6 font-sans">Quick Links</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-sans">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -107,7 +107,7 @@ export default function Footer() {
 
           {/* Column 3: Opening Hours */}
           <div className="lg:col-span-2 flex flex-col items-start">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6 font-sans">Opening Hours</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-sans">Opening Hours</h3>
             <ul className="space-y-3 w-full">
               {openingHours.map((item) => (
                 <li key={item.day} className="flex flex-col">
@@ -122,7 +122,7 @@ export default function Footer() {
 
           {/* Column 4: Newsletter + Map */}
           <div className="lg:col-span-4 flex flex-col items-start w-full">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6 font-sans">Stay Connected</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-sans">Stay Connected</h3>
 
             {/* Newsletter */}
             <p className="text-sm text-muted font-light mb-4 leading-relaxed">
@@ -134,7 +134,7 @@ export default function Footer() {
                 placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl bg-white border border-gray-200 focus:border-primary text-sm text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all placeholder:text-muted/50"
+                className="flex-1 px-4 py-3 rounded-xl bg-white border border-gray-200 focus:border-primary text-base lg:text-sm text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all placeholder:text-muted/50"
                 aria-label="Email for newsletter"
               />
               <button
@@ -176,7 +176,7 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-[11px] text-muted font-medium tracking-wide">
+          <p className="text-xs text-muted font-medium tracking-wide">
             © 2026 Smile Signature. All Rights Reserved.
           </p>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -131,7 +132,7 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             Reviews
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -158,7 +159,7 @@ export default function Testimonials() {
           ref={containerRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative min-h-[380px] sm:min-h-[320px] flex items-center justify-center"
+          className="relative min-h-[340px] sm:min-h-[320px] flex items-center justify-center"
         >
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -175,7 +176,7 @@ export default function Testimonials() {
               onDragEnd={handleDragEnd}
               tabIndex={0}
               onKeyDown={handleKeyDown}
-              className="w-full bg-white rounded-[28px] p-8 sm:p-12 border border-gray-100 shadow-premium hover:shadow-premium-hover transition-all duration-500 flex flex-col items-center text-center relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-grab active:cursor-grabbing"
+              className="w-full bg-white rounded-[20px] sm:rounded-[28px] p-5 sm:p-12 border border-gray-100 shadow-premium hover:shadow-premium-hover transition-all duration-500 flex flex-col items-center text-center relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-grab active:cursor-grabbing"
               aria-label={`Testimonial from ${testimonials[activeIndex].name}. Use left and right arrow keys or swipe to navigate.`}
             >
               {/* Quote icon */}
@@ -188,11 +189,14 @@ export default function Testimonials() {
                     <Star key={i} className="w-4.5 h-4.5 text-amber-400 fill-amber-400 shrink-0" />
                   ))}
                 </div>
-                <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Verified Review</span>
+                <span className="text-xs font-bold text-muted uppercase tracking-widest">Verified Review</span>
               </div>
 
               {/* Review Text */}
-              <p className="font-serif italic text-lg sm:text-xl md:text-2xl text-dark/80 tracking-wide font-light leading-relaxed mb-8 max-w-2xl">
+              <p 
+                className="font-serif italic text-dark/80 tracking-wide font-light leading-relaxed mb-8 max-w-2xl w-full"
+                style={{ fontSize: "clamp(0.95rem, 4.5vw, 1.25rem)" }}
+              >
                 &ldquo;{testimonials[activeIndex].review}&rdquo;
               </p>
 
@@ -201,17 +205,20 @@ export default function Testimonials() {
 
               {/* User profile */}
               <div className="flex items-center gap-4 mt-auto">
-                <img
-                  src={testimonials[activeIndex].photo}
-                  alt={testimonials[activeIndex].name}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-primary/20 shadow-md"
-                  loading="lazy"
-                />
+                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 shadow-md shrink-0">
+                  <Image
+                    src={testimonials[activeIndex].photo}
+                    alt={testimonials[activeIndex].name}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="text-left">
                   <h4 className="font-serif font-bold text-base md:text-lg text-dark">
                     {testimonials[activeIndex].name}
                   </h4>
-                  <p className="text-[10px] text-primary font-bold uppercase tracking-widest mt-0.5">
+                  <p className="text-[11px] text-primary font-bold uppercase tracking-widest mt-0.5">
                     {testimonials[activeIndex].role}
                   </p>
                 </div>
@@ -220,7 +227,7 @@ export default function Testimonials() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none px-2 sm:-mx-6">
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 hidden sm:flex justify-between pointer-events-none px-2 sm:-mx-6">
             <button
               onClick={handlePrev}
               className="w-11 h-11 rounded-full bg-white border border-gray-200 hover:border-primary hover:text-primary text-dark flex items-center justify-center shadow-card hover:shadow-card-hover pointer-events-auto transition-all duration-300 active:scale-95 cursor-pointer"
@@ -239,16 +246,18 @@ export default function Testimonials() {
         </div>
 
         {/* Indicators */}
-        <div className="flex items-center justify-center gap-2.5 mt-10">
+        <div className="flex items-center justify-center gap-1 mt-10">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
-                index === activeIndex ? "w-8 bg-primary" : "w-1.5 bg-primary/20 hover:bg-primary/40"
-              }`}
+              className="relative flex items-center justify-center w-11 h-11 cursor-pointer focus:outline-none"
               aria-label={`Go to review ${index + 1}`}
-            />
+            >
+              <span className={`block rounded-full transition-all duration-500 ${
+                index === activeIndex ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-primary/20 hover:bg-primary/40"
+              }`} />
+            </button>
           ))}
         </div>
       </div>

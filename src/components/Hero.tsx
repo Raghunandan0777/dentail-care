@@ -53,27 +53,25 @@ export default function Hero() {
   };
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 80,
-        damping: 20,
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   };
 
   const slideUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 70,
-        damping: 18,
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   };
@@ -84,9 +82,8 @@ export default function Hero() {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring" as const,
-        stiffness: 50,
-        damping: 18,
+        duration: 1.0,
+        ease: [0.16, 1, 0.3, 1] as const,
         delay: 0.35,
       },
     },
@@ -158,16 +155,16 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-7 flex flex-col items-start text-left"
+          className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
         >
           {/* Star Rating Trust Badge */}
-          <motion.div variants={fadeUp} className="flex items-center gap-2 mb-5">
+          <motion.div variants={fadeUp} className="flex items-center gap-2 mb-5 mx-auto lg:mx-0">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400 shrink-0" />
               ))}
             </div>
-            <span className="text-[11px] font-semibold text-muted uppercase tracking-widest ml-1 font-sans">
+            <span className="text-xs font-semibold text-muted uppercase tracking-widest ml-1 font-sans">
               5.0 Rated · 2,000+ Reviews
             </span>
           </motion.div>
@@ -175,7 +172,7 @@ export default function Hero() {
           {/* Category Badge */}
           <motion.div
             variants={fadeUp}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary/10 text-primary font-semibold text-[10px] tracking-widest uppercase mb-7 font-sans"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary/10 text-primary font-semibold text-xs tracking-widest uppercase mb-7 font-sans mx-auto lg:mx-0"
           >
             <span className="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             Premium Dental Care
@@ -184,10 +181,10 @@ export default function Hero() {
           {/* Heading with text reveal */}
           <motion.h1
             variants={fadeUp}
-            className="text-dark leading-[1.08] mb-8 font-serif tracking-tight"
+            className="text-dark leading-[1.08] mb-8 font-serif tracking-tight w-full"
           >
             <motion.span
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="block font-medium text-muted text-xl md:text-2xl lg:text-3xl mb-3 font-sans tracking-normal"
@@ -195,10 +192,11 @@ export default function Hero() {
               Transform Your Smile With
             </motion.span>
             <motion.span
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="block font-bold text-4xl md:text-5xl lg:text-7xl"
+              className="block font-bold"
+              style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)", lineHeight: 1.1 }}
             >
               Expert Dental{" "}
               <span className="relative inline-block">
@@ -216,7 +214,7 @@ export default function Hero() {
           {/* Subheading */}
           <motion.p
             variants={fadeUp}
-            className="text-base md:text-lg text-muted font-light leading-relaxed mb-10 max-w-xl font-sans"
+            className="text-base md:text-lg text-muted font-light leading-relaxed mb-10 max-w-xl font-sans mx-auto lg:mx-0"
           >
             Experience exceptional dental treatments, advanced technology, and personalized care designed to give you the confidence to smile brighter every day.
           </motion.p>
@@ -224,13 +222,13 @@ export default function Hero() {
           {/* Call to Actions */}
           <motion.div
             variants={slideUp}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-16 w-full sm:w-auto font-sans"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 mb-16 w-full sm:w-auto font-sans mx-auto lg:mx-0"
           >
             <motion.a
               href="#book-appointment"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 rounded-full blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest text-center shadow-premium hover:shadow-premium-hover transition-all duration-300 flex items-center justify-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn ripple-btn"
+              className="px-8 py-4 rounded-full blue-gradient text-white font-semibold text-xs tracking-widest text-center shadow-premium hover:shadow-premium-hover transition-all duration-300 flex items-center justify-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn ripple-btn cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
               Book Appointment
@@ -240,7 +238,7 @@ export default function Hero() {
               href="tel:+918866902356"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 rounded-full border-2 border-dark/10 hover:border-primary hover:text-primary text-dark font-semibold text-[11px] uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2 bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2"
+              className="px-8 py-4 rounded-full border-2 border-dark/10 hover:border-primary hover:text-primary text-dark font-semibold text-xs tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2 bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 cursor-pointer"
             >
               <Phone className="w-3.5 h-3.5" />
               Emergency Call
@@ -272,7 +270,7 @@ export default function Hero() {
                       </span>
                     )}
                   </div>
-                  <span className="text-[9px] text-muted font-semibold uppercase tracking-widest mt-1.5">
+                  <span className="text-[11px] text-muted font-semibold uppercase tracking-widest mt-1.5">
                     {stat.label}
                   </span>
                 </motion.div>
@@ -292,7 +290,7 @@ export default function Hero() {
           <motion.div
             variants={slowFloat}
             animate="animate"
-            className="relative w-full max-w-[400px] aspect-[4/5] rounded-[32px] overflow-hidden shadow-premium-hover border border-gray-100 bg-gray-50 z-10"
+            className="relative w-full max-w-[400px] aspect-[4/5] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-premium-hover border border-gray-100 bg-gray-50 z-10"
           >
             <Image
               src="/images/hero-dentist.png"
@@ -303,7 +301,7 @@ export default function Hero() {
               priority
             />
             {/* Elegant frame overlay */}
-            <div className="absolute inset-0 border-[6px] border-white/15 pointer-events-none rounded-[32px]" />
+            <div className="absolute inset-0 border-[6px] border-white/15 pointer-events-none rounded-[24px] sm:rounded-[32px]" />
             {/* Bottom gradient */}
             <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-dark/20 to-transparent pointer-events-none" />
           </motion.div>
@@ -318,7 +316,7 @@ export default function Hero() {
               <Star className="w-4.5 h-4.5 fill-primary text-primary" />
             </div>
             <div>
-              <p className="text-[9px] text-muted font-semibold uppercase tracking-widest">Top Rated</p>
+              <p className="text-[11px] text-muted font-semibold uppercase tracking-widest">Top Rated</p>
               <p className="text-xs font-bold text-dark">5-Star Clinic</p>
             </div>
           </motion.div>
@@ -331,7 +329,7 @@ export default function Hero() {
           >
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <div>
-              <p className="text-[9px] text-muted font-semibold uppercase tracking-widest">Status</p>
+              <p className="text-[11px] text-muted font-semibold uppercase tracking-widest">Status</p>
               <p className="text-xs font-bold text-dark">Online Booking</p>
             </div>
           </motion.div>
@@ -350,7 +348,7 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="border-t border-gray-100 mt-28 pt-16 w-full max-w-7xl mx-auto px-6 z-10 relative font-sans"
       >
-        <p className="text-center text-[10px] uppercase tracking-widest text-muted font-bold mb-10">
+        <p className="text-center text-[11px] uppercase tracking-widest text-muted font-bold mb-10">
           Professional Certifications & Guarantees
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
@@ -367,12 +365,12 @@ export default function Hero() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08, duration: 0.5 }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3.5 p-5 rounded-2xl bg-primary-50/30 border border-primary/5 hover:border-primary/15 hover:shadow-premium transition-all duration-500 cursor-default"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-primary-50/30 border border-primary/5 hover:border-primary/15 hover:shadow-premium transition-all duration-500 cursor-default"
             >
               <span className="text-2xl">{badge.emoji}</span>
               <div className="text-left text-xs text-dark/80">
                 <p className="text-dark font-bold text-xs uppercase tracking-wider">{badge.title}</p>
-                <p className="text-[9px] text-muted font-semibold uppercase tracking-widest mt-0.5">{badge.sub}</p>
+                <p className="text-[11px] text-muted font-semibold uppercase tracking-widest mt-0.5">{badge.sub}</p>
               </div>
             </motion.div>
           ))}

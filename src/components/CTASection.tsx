@@ -8,11 +8,11 @@ export default function CTASection() {
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="blue-gradient-soft rounded-[32px] p-8 md:p-16 text-center relative overflow-hidden shadow-premium border border-primary/8 flex flex-col items-center"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="blue-gradient-soft rounded-[20px] sm:rounded-[32px] p-6 sm:p-8 md:p-16 text-center relative overflow-hidden shadow-premium border border-primary/8 flex flex-col items-center"
         >
           {/* Decorative animated glow elements */}
           <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/5 blur-[80px] pointer-events-none animate-pulse-soft" />
@@ -40,7 +40,7 @@ export default function CTASection() {
           </p>
 
           {/* Urgency text */}
-          <p className="text-[10px] uppercase tracking-widest font-bold text-primary/70 mb-8 relative z-10">
+          <p className="text-xs uppercase tracking-widest font-bold text-primary/70 mb-8 relative z-10">
             ⚡ Limited slots available this week
           </p>
 
@@ -48,7 +48,7 @@ export default function CTASection() {
             href="#book-appointment"
             whileHover={{ scale: 1.03, y: -3 }}
             whileTap={{ scale: 0.97 }}
-            className="shine-btn ripple-btn group px-10 py-4 rounded-full blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-premium hover:shadow-premium-hover transition-all duration-300 cursor-pointer relative z-10"
+            className="shine-btn ripple-btn group px-10 py-4 rounded-full blue-gradient text-white font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-premium hover:shadow-premium-hover transition-all duration-300 cursor-pointer relative z-10"
           >
             <Calendar className="w-4 h-4" />
             Book Appointment

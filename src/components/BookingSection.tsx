@@ -110,7 +110,7 @@ Please confirm my appointment.`;
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             Reservations
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -122,10 +122,11 @@ Please confirm my appointment.`;
         </motion.div>
 
         {/* Progress Steps */}
-        <div className="flex items-center justify-center gap-0 mb-10 max-w-sm mx-auto">
+        {/* Progress Steps */}
+        <div className="flex items-center justify-center mb-10 w-full max-w-md mx-auto px-2">
           {steps.map((s, idx) => (
-            <div key={s.num} className="flex items-center">
-              <div className="flex flex-col items-center">
+            <div key={s.num} className="flex items-center flex-1 last:flex-none">
+              <div className="flex flex-col items-center shrink-0">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500 ${
                   step >= s.num
                     ? "blue-gradient text-white shadow-premium"
@@ -133,14 +134,14 @@ Please confirm my appointment.`;
                 }`}>
                   {step > s.num ? <Check className="w-4 h-4" /> : s.num}
                 </div>
-                <span className={`text-[9px] uppercase tracking-widest font-bold mt-2 transition-colors duration-300 ${
+                <span className={`text-[9px] sm:text-[10px] uppercase tracking-wider font-bold mt-2 transition-colors duration-300 text-center ${
                   step >= s.num ? "text-primary" : "text-muted"
                 }`}>
                   {s.label}
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className={`w-12 sm:w-20 h-[2px] mx-2 rounded-full transition-all duration-500 mt-[-16px] ${
+                <div className={`flex-1 h-[2px] mx-1 sm:mx-2 rounded-full transition-all duration-500 -mt-[18px] ${
                   step > s.num ? "bg-primary" : "bg-gray-200"
                 }`} />
               )}
@@ -150,11 +151,11 @@ Please confirm my appointment.`;
 
         {/* Form Container */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="glass-card rounded-[24px] p-8 md:p-10 shadow-premium border border-white/90"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="glass-card rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 md:p-10 shadow-premium border border-white/90"
         >
           {isSubmitted ? (
             /* Success State */
@@ -197,7 +198,7 @@ Please confirm my appointment.`;
                     className="space-y-6"
                   >
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="fullName" className="text-[10px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
+                      <label htmlFor="fullName" className="text-[11px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5 text-primary/60" />
                         Full Name
                       </label>
@@ -211,12 +212,10 @@ Please confirm my appointment.`;
                           onChange={handleInputChange}
                           aria-invalid={errors.fullName ? "true" : "false"}
                           aria-describedby={errors.fullName ? "fullName-error" : undefined}
-                          className={`w-full px-5 py-4 rounded-xl bg-white border text-sm tracking-wide ${
-                            errors.fullName ? "border-rose-300 focus:ring-rose-100" : "border-gray-200 focus:border-primary"
-                          } text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all`}
+                          className="w-full px-5 py-4 rounded-xl bg-white border text-base lg:text-sm tracking-wide border-gray-200 focus:border-primary text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all"
                         />
                         {errors.fullName && (
-                          <span id="fullName-error" role="alert" className="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500 text-[10px] flex items-center gap-1 bg-white px-2 py-0.5 rounded shadow-sm font-semibold">
+                          <span id="fullName-error" role="alert" className="text-rose-500 text-xs flex items-center gap-1 mt-1.5 font-semibold">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.fullName}
                           </span>
@@ -225,7 +224,7 @@ Please confirm my appointment.`;
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="mobileNumber" className="text-[10px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
+                      <label htmlFor="mobileNumber" className="text-[11px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
                         <Phone className="w-3.5 h-3.5 text-primary/60" />
                         Mobile Number
                       </label>
@@ -239,12 +238,10 @@ Please confirm my appointment.`;
                           onChange={handleInputChange}
                           aria-invalid={errors.mobileNumber ? "true" : "false"}
                           aria-describedby={errors.mobileNumber ? "mobileNumber-error" : undefined}
-                          className={`w-full px-5 py-4 rounded-xl bg-white border text-sm tracking-wide ${
-                            errors.mobileNumber ? "border-rose-300 focus:ring-rose-100" : "border-gray-200 focus:border-primary"
-                          } text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all`}
+                          className="w-full px-5 py-4 rounded-xl bg-white border text-base lg:text-sm tracking-wide border-gray-200 focus:border-primary text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all"
                         />
                         {errors.mobileNumber && (
-                          <span id="mobileNumber-error" role="alert" className="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500 text-[10px] flex items-center gap-1 bg-white px-2 py-0.5 rounded shadow-sm font-semibold">
+                          <span id="mobileNumber-error" role="alert" className="text-rose-500 text-xs flex items-center gap-1 mt-1.5 font-semibold">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.mobileNumber}
                           </span>
@@ -256,7 +253,7 @@ Please confirm my appointment.`;
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="w-full py-4 rounded-xl blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark shine-btn cursor-pointer"
+                        className="w-full py-4 rounded-xl blue-gradient text-white font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark shine-btn cursor-pointer"
                       >
                         Continue
                         <ArrowRight className="w-4 h-4" />
@@ -277,7 +274,7 @@ Please confirm my appointment.`;
                     className="space-y-6"
                   >
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="date" className="text-[10px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
+                      <label htmlFor="date" className="text-[11px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-primary/60" />
                         Appointment Date
                       </label>
@@ -290,12 +287,10 @@ Please confirm my appointment.`;
                           onChange={handleInputChange}
                           min={new Date().toISOString().split("T")[0]}
                           aria-invalid={errors.date ? "true" : "false"}
-                          className={`w-full px-5 py-4 rounded-xl bg-white border text-sm tracking-wide ${
-                            errors.date ? "border-rose-300" : "border-gray-200 focus:border-primary"
-                          } text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all`}
+                          className="w-full px-5 py-4 rounded-xl bg-white border text-base lg:text-sm tracking-wide border-gray-200 focus:border-primary text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all"
                         />
                         {errors.date && (
-                          <span role="alert" className="text-rose-500 text-[10px] flex items-center gap-1 mt-1.5 font-semibold">
+                          <span role="alert" className="text-rose-500 text-xs flex items-center gap-1 mt-1.5 font-semibold">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.date}
                           </span>
@@ -304,7 +299,7 @@ Please confirm my appointment.`;
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="time" className="text-[10px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
+                      <label htmlFor="time" className="text-[11px] uppercase tracking-widest text-muted font-bold flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5 text-primary/60" />
                         Preferred Time Slot
                       </label>
@@ -315,9 +310,7 @@ Please confirm my appointment.`;
                           value={formData.time}
                           onChange={handleInputChange}
                           aria-invalid={errors.time ? "true" : "false"}
-                          className={`w-full px-5 py-4 rounded-xl bg-white border text-sm tracking-wide ${
-                            errors.time ? "border-rose-300" : "border-gray-200 focus:border-primary"
-                          } text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all appearance-none cursor-pointer`}
+                          className="w-full px-5 py-4 rounded-xl bg-white border text-base lg:text-sm tracking-wide border-gray-200 focus:border-primary text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all appearance-none cursor-pointer"
                         >
                           <option value="">Select Time Slot</option>
                           <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
@@ -332,7 +325,7 @@ Please confirm my appointment.`;
                           <Clock className="w-4 h-4" />
                         </div>
                         {errors.time && (
-                          <span role="alert" className="text-rose-500 text-[10px] flex items-center gap-1 mt-1.5 font-semibold">
+                          <span role="alert" className="text-rose-500 text-xs flex items-center gap-1 mt-1.5 font-semibold">
                             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                             {errors.time}
                           </span>
@@ -344,7 +337,7 @@ Please confirm my appointment.`;
                       <button
                         type="button"
                         onClick={handleBack}
-                        className="flex-1 py-4 rounded-xl border-2 border-gray-200 text-dark font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                        className="flex-1 py-4 rounded-xl border-2 border-gray-200 text-dark font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:border-primary/30 transition-all duration-300 cursor-pointer"
                       >
                         <ArrowLeft className="w-4 h-4" />
                         Back
@@ -352,7 +345,7 @@ Please confirm my appointment.`;
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="flex-[2] py-4 rounded-xl blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] shine-btn cursor-pointer"
+                        className="flex-[2] py-4 rounded-xl blue-gradient text-white font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] shine-btn cursor-pointer"
                       >
                         Review Booking
                         <ArrowRight className="w-4 h-4" />
@@ -379,22 +372,22 @@ Please confirm my appointment.`;
 
                     <div className="bg-primary-50/50 rounded-xl p-6 space-y-4 border border-primary/8">
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Name</span>
+                        <span className="text-xs uppercase tracking-widest text-muted font-bold">Name</span>
                         <span className="text-sm font-semibold text-dark">{formData.fullName}</span>
                       </div>
                       <div className="h-px bg-primary/8" />
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Mobile</span>
+                        <span className="text-xs uppercase tracking-widest text-muted font-bold">Mobile</span>
                         <span className="text-sm font-semibold text-dark">{formData.mobileNumber}</span>
                       </div>
                       <div className="h-px bg-primary/8" />
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Date</span>
+                        <span className="text-xs uppercase tracking-widest text-muted font-bold">Date</span>
                         <span className="text-sm font-semibold text-dark">{formData.date}</span>
                       </div>
                       <div className="h-px bg-primary/8" />
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Time</span>
+                        <span className="text-xs uppercase tracking-widest text-muted font-bold">Time</span>
                         <span className="text-sm font-semibold text-dark">{formData.time}</span>
                       </div>
                     </div>
@@ -403,14 +396,14 @@ Please confirm my appointment.`;
                       <button
                         type="button"
                         onClick={handleBack}
-                        className="flex-1 py-4 rounded-xl border-2 border-gray-200 text-dark font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                        className="flex-1 py-4 rounded-xl border-2 border-gray-200 text-dark font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:border-primary/30 transition-all duration-300 cursor-pointer"
                       >
                         <ArrowLeft className="w-4 h-4" />
                         Edit
                       </button>
                       <button
                         type="submit"
-                        className="flex-[2] py-4 rounded-xl blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] shine-btn ripple-btn cursor-pointer"
+                        className="flex-[2] py-4 rounded-xl blue-gradient text-white font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-premium hover:shadow-premium-hover transition-all duration-300 active:scale-[0.99] shine-btn ripple-btn cursor-pointer"
                       >
                         <MessageSquare className="w-4 h-4 fill-white" />
                         Confirm via WhatsApp

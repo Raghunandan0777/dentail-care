@@ -69,7 +69,7 @@ export default function FAQSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             FAQ
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -82,10 +82,10 @@ export default function FAQSection() {
 
         {/* Search Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
           className="relative mb-10"
         >
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
@@ -94,7 +94,7 @@ export default function FAQSection() {
             placeholder="Search questions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-5 py-4 rounded-2xl bg-ivory border border-gray-200 focus:border-primary text-sm text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all placeholder:text-muted/60"
+            className="w-full pl-11 pr-5 py-4 rounded-2xl bg-ivory border border-gray-200 focus:border-primary text-base lg:text-sm text-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-all placeholder:text-muted/60"
             aria-label="Search frequently asked questions"
           />
         </motion.div>
@@ -113,14 +113,14 @@ export default function FAQSection() {
               return (
                 <motion.div
                   key={globalIndex}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: idx * 0.04 }}
                 >
                   <button
                     onClick={() => toggleFaq(globalIndex)}
-                    className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                    className={`w-full text-left p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                       isOpen
                         ? "bg-white border-primary/15 shadow-card-hover"
                         : "bg-ivory border-gray-100 hover:border-primary/10 hover:shadow-card"

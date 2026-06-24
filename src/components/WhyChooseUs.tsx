@@ -87,7 +87,7 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary-50 px-4 py-1.5 rounded-full border border-primary/10 inline-block">
             Distinction
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-dark mt-5 mb-4">
@@ -105,12 +105,12 @@ export default function WhyChooseUs() {
             return (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.06 }}
                 whileHover={{ y: -6 }}
-                className="group relative p-7 rounded-[20px] bg-white/60 border border-gray-100 hover:border-primary/15 hover:bg-white shadow-card hover:shadow-card-hover transition-all duration-500 cursor-default"
+                className="group relative p-5 sm:p-7 rounded-[16px] sm:rounded-[20px] bg-white/60 border border-gray-100 hover:border-primary/15 hover:bg-white shadow-card hover:shadow-card-hover transition-all duration-500 cursor-default"
               >
                 {/* Hover glow */}
                 <div className="absolute inset-0 rounded-[20px] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.04),transparent_60%)] group-hover:bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none transition-all duration-500" />
@@ -133,23 +133,23 @@ export default function WhyChooseUs() {
 
         {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-0 rounded-[24px] glass-card border border-white/90 overflow-hidden shadow-premium max-w-4xl mx-auto"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-0 rounded-[20px] sm:rounded-[24px] glass-card border border-white/90 overflow-hidden shadow-premium max-w-4xl mx-auto"
         >
           {counters.map((counter, idx) => (
             <div
               key={counter.label}
-              className={`flex flex-col items-center p-8 sm:p-10 ${
+              className={`flex flex-col items-center p-4 sm:p-10 ${
                 idx === 0 ? "border-r border-b border-gray-100/60" :
                 idx === 1 ? "border-b border-gray-100/60 md:border-r" :
                 idx === 2 ? "border-r border-gray-100/60 md:border-b-0" : ""
               }`}
             >
               <Counter value={counter.val} suffix={counter.suffix} />
-              <span className="text-[10px] text-muted font-bold uppercase tracking-widest mt-3 text-center">
+              <span className="text-[10px] sm:text-xs text-muted font-bold uppercase tracking-widest mt-3 text-center">
                 {counter.label}
               </span>
             </div>

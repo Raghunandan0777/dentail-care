@@ -38,7 +38,7 @@ export default function FloatingWidgets() {
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
               transition={{ duration: 0.3 }}
               onClick={scrollToTop}
-              className="fixed right-6 bottom-40 lg:bottom-24 z-40 w-11 h-11 rounded-full bg-white border border-gray-200 text-muted hover:text-primary hover:border-primary/30 flex items-center justify-center shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="fixed right-6 bottom-[136px] lg:bottom-24 z-40 w-11 h-11 rounded-full bg-white border border-gray-200 text-muted hover:text-primary hover:border-primary/30 flex items-center justify-center shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function FloatingWidgets() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="fixed right-6 bottom-24 lg:bottom-8 z-40 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center shadow-premium hover:shadow-premium-hover transition-all duration-300 group focus-visible:ring-4 focus-visible:ring-[#25d366]/40 focus:outline-none"
+              className="fixed right-6 bottom-[76px] lg:bottom-8 z-40 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center shadow-premium hover:shadow-premium-hover transition-all duration-300 group focus-visible:ring-4 focus-visible:ring-[#25d366]/40 focus:outline-none"
               aria-label="Contact us on WhatsApp"
             >
               <svg
@@ -78,7 +78,7 @@ export default function FloatingWidgets() {
                 <span className="font-serif font-bold text-dark text-sm sm:text-base leading-tight">
                   Smile Signature
                 </span>
-                <span className="text-[10px] uppercase tracking-wider text-primary font-semibold">
+                <span className="text-[11px] uppercase tracking-wider text-primary font-semibold">
                   Premium Dental Care
                 </span>
               </div>

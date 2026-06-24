@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${manrope.variable} h-full antialiased scroll-smooth`}
+      className={`${playfair.variable} ${manrope.variable} h-full antialiased scroll-smooth overflow-x-hidden`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-white text-dark font-sans" suppressHydrationWarning>

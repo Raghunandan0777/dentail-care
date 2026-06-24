@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Check, Award, GraduationCap, Clock, Calendar, Heart } from "lucide-react";
+import { Award, GraduationCap, Clock, Calendar } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -121,7 +121,7 @@ export default function DoctorSection() {
 
           {/* Left Column — Doctor Image */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -150,7 +150,7 @@ export default function DoctorSection() {
 
           {/* Right Column — Info */}
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -216,7 +216,7 @@ export default function DoctorSection() {
               href="#book-appointment"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 rounded-full blue-gradient text-white font-semibold text-[11px] uppercase tracking-widest shadow-premium hover:shadow-premium-hover transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn"
+              className="px-8 py-4 rounded-full blue-gradient text-white font-semibold text-xs tracking-widest shadow-premium hover:shadow-premium-hover transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn"
             >
               <Calendar className="w-4 h-4" />
               Book Consultation
@@ -226,10 +226,10 @@ export default function DoctorSection() {
 
         {/* Experience Timeline */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mt-24"
         >
           <h3 className="text-center font-serif font-bold text-2xl md:text-3xl text-dark mb-12">
@@ -242,18 +242,18 @@ export default function DoctorSection() {
             {timeline.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className={`relative flex items-start gap-6 mb-8 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} md:text-${idx % 2 === 0 ? 'right' : 'left'}`}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
+                className={`relative flex items-start gap-6 mb-8 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
               >
                 {/* Dot */}
                 <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary border-2 border-white shadow-sm -translate-x-[5px] md:-translate-x-[6px] mt-1.5 z-10" />
 
                 {/* Content */}
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{item.year}</span>
+                  <span className="text-xs font-bold text-primary uppercase tracking-widest">{item.year}</span>
                   <p className="text-sm text-dark font-medium mt-1">{item.event}</p>
                 </div>
               </motion.div>
@@ -263,11 +263,11 @@ export default function DoctorSection() {
 
         {/* Trust Stats */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-0 rounded-[24px] glass-card border border-white/90 overflow-hidden shadow-premium max-w-4xl mx-auto"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-0 rounded-[20px] sm:rounded-[24px] glass-card border border-white/90 overflow-hidden shadow-premium max-w-4xl mx-auto"
         >
           {[
             { label: "Happy Patients", val: 5000, suffix: "+" },
@@ -277,14 +277,14 @@ export default function DoctorSection() {
           ].map((counter, idx) => (
             <div
               key={counter.label}
-              className={`flex flex-col items-center p-8 sm:p-10 ${
+              className={`flex flex-col items-center p-4 sm:p-10 ${
                 idx === 0 ? "border-r border-b border-gray-100/60" :
-                idx === 1 ? "border-b border-gray-100/60" :
+                idx === 1 ? "border-b border-gray-100/60 md:border-r" :
                 idx === 2 ? "border-r border-gray-100/60 md:border-b-0" : ""
               }`}
             >
               <Counter value={counter.val} suffix={counter.suffix} />
-              <span className="text-[10px] text-muted font-bold uppercase tracking-widest mt-3 text-center">
+              <span className="text-[10px] sm:text-xs text-muted font-bold uppercase tracking-widest mt-3 text-center">
                 {counter.label}
               </span>
             </div>

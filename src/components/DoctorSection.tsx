@@ -70,14 +70,6 @@ export default function DoctorSection() {
     { icon: Clock, title: "Clinical Experience", desc: "10+ Years of advanced clinical dental practice" },
   ];
 
-  const timeline = [
-    { year: "2014", event: "Graduated BDS with Gold Medal" },
-    { year: "2017", event: "Completed MDS in Orthodontics" },
-    { year: "2018", event: "Advanced training in Cosmetic Dentistry, USA" },
-    { year: "2020", event: "Founded Smile Signature Clinic" },
-    { year: "2023", event: "1000+ Successful Smile Transformations" },
-  ];
-
   const slowFloat = {
     animate: {
       y: [0, -8, 0],
@@ -281,42 +273,7 @@ export default function DoctorSection() {
           </motion.div>
         </div>
 
-        {/* Experience Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-24"
-        >
-          <h3 className="text-center font-serif font-bold text-2xl md:text-3xl text-dark mb-12">
-            Professional Journey
-          </h3>
-          <div className="relative max-w-3xl mx-auto">
-            {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/20 via-primary/10 to-transparent md:-translate-x-[1px]" />
 
-            {timeline.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
-                className={`relative flex items-start gap-6 mb-8 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
-              >
-                {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary border-2 border-white shadow-sm -translate-x-[5px] md:-translate-x-[6px] mt-1.5 z-10" />
-
-                {/* Content */}
-                <div className={`ml-12 md:ml-0 md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest">{item.year}</span>
-                  <p className="text-sm text-dark font-medium mt-1">{item.event}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Trust Stats */}
         <motion.div

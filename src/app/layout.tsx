@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+<<<<<<< HEAD
 import { Playfair_Display, Manrope } from "next/font/google";
 import "./globals.css";
 
@@ -6,6 +7,16 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
+=======
+import { Cormorant_Garamond, Manrope } from "next/font/google";
+import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+>>>>>>> master
 });
 
 const manrope = Manrope({
@@ -34,7 +45,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+<<<<<<< HEAD
       className={`${playfair.variable} ${manrope.variable} h-full antialiased scroll-smooth overflow-x-hidden`}
+=======
+      className={`${cormorant.variable} ${manrope.variable} h-full antialiased scroll-smooth overflow-x-hidden`}
+>>>>>>> master
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-white text-dark font-sans" suppressHydrationWarning>

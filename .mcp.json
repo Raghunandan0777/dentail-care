@@ -7,7 +7,11 @@
         "C:\\Users\\Lenovo\\.jetro\\mcp-server\\index.js"
       ],
       "env": {
+<<<<<<< HEAD
         "JET_WORKSPACE": "c:\\Users\\Lenovo\\Desktop\\dentail\\smile",
+=======
+        "JET_WORKSPACE": "d:\\freelance project\\dentail-care",
+>>>>>>> master
         "JET_API_URL": "https://api.jetro.ai",
         "PATH": "C:\\Users\\Lenovo\\.jetro\\runtime;C:\\Python313\\Scripts\\;C:\\Python313\\;c:\\Users\\Lenovo\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Lenovo\\AppData\\Roaming\\npm;c:\\Users\\Lenovo\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\Lenovo\\.local\\bin;C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\;C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\raghu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Lenovo\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Users\\Lenovo\\AppData\\Roaming\\npm;C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Antigravity\\bin;C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Ollama;C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
       }

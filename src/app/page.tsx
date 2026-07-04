@@ -1,16 +1,20 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import BookingSection from "@/components/BookingSection";
 import Services from "@/components/Services";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import Testimonials from "@/components/Testimonials";
-import DoctorSection from "@/components/DoctorSection";
-import Gallery from "@/components/Gallery";
-import BeforeAfter from "@/components/BeforeAfter";
-import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
-import FloatingWidgets from "@/components/FloatingWidgets";
+import dynamic from "next/dynamic";
+
+const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs"));
+const SterilizationProcess = dynamic(() => import("@/components/SterilizationProcess"));
+const ModernEquipment = dynamic(() => import("@/components/ModernEquipment"));
+const DoctorSection = dynamic(() => import("@/components/DoctorSection"));
+const BeforeAfter = dynamic(() => import("@/components/BeforeAfter"));
+const Gallery = dynamic(() => import("@/components/Gallery"));
+const BookingSection = dynamic(() => import("@/components/BookingSection"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const FAQSection = dynamic(() => import("@/components/FAQSection"));
+const CTASection = dynamic(() => import("@/components/CTASection"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const FloatingWidgets = dynamic(() => import("@/components/FloatingWidgets"));
 
 export default function Home() {
   const dentistSchema = {
@@ -67,6 +71,8 @@ export default function Home() {
         <Hero />
         <Services />
         <WhyChooseUs />
+        <SterilizationProcess />
+        <ModernEquipment />
         <DoctorSection />
         <BeforeAfter />
         <Gallery />

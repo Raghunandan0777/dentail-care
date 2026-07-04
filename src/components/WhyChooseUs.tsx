@@ -65,10 +65,10 @@ export default function WhyChooseUs() {
   ];
 
   const counters = [
-    { label: "Happy Patients", val: 5000, suffix: "+" },
-    { label: "Years Experience", val: 10, suffix: "+" },
-    { label: "Satisfaction Rate", val: 98, suffix: "%" },
-    { label: "Smile Transformations", val: 1000, suffix: "+" },
+    { label: "Patients", val: 5000, suffix: "+" },
+    { label: "Years", val: 10, suffix: "+" },
+    { label: "Satisfaction", val: 98, suffix: "%" },
+    { label: "Sterilized Equipment", val: 100, suffix: "%" },
   ];
 
   return (
@@ -109,17 +109,29 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.06 }}
-                whileHover={{ y: -6 }}
-                className="group relative p-5 sm:p-7 rounded-[16px] sm:rounded-[20px] bg-white/60 border border-gray-100 hover:border-primary/15 hover:bg-white shadow-card hover:shadow-card-hover transition-all duration-500 cursor-default"
+                whileHover={{ y: -10 }}
+                className="group relative p-6 sm:p-8 rounded-[16px] sm:rounded-[24px] bg-white border border-gray-100 hover:border-transparent shadow-card hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.25)] transition-all duration-500 cursor-default"
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 rounded-[20px] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.04),transparent_60%)] group-hover:bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none transition-all duration-500" />
+                {/* Animated Background */}
+                <div className="absolute inset-0 rounded-[16px] sm:rounded-[24px] bg-gradient-to-br from-gray-50 to-white group-hover:from-primary/5 group-hover:to-primary/10 transition-colors duration-500 pointer-events-none" />
+
+                {/* Gradient Border effect */}
+                <div 
+                  className="absolute inset-0 rounded-[16px] sm:rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+                  style={{ 
+                    background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.4) 0%, rgba(37, 99, 235, 0.05) 100%)', 
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', 
+                    WebkitMaskComposite: 'xor', 
+                    maskComposite: 'exclude', 
+                    padding: '2px' 
+                  }} 
+                />
 
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-primary-50 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-white transition-all duration-500 shadow-sm mb-5">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-14 h-14 rounded-2xl bg-primary-50 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_16px_-4px_rgba(37,99,235,0.4)] transform group-hover:-translate-y-1 group-hover:rotate-[10deg] mb-6">
+                    <Icon className="w-6 h-6 transition-transform duration-500 group-hover:scale-110" />
                   </div>
-                  <h3 className="font-serif font-bold text-lg text-dark mb-2 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-serif font-bold text-xl text-dark mb-3 group-hover:text-primary transition-colors duration-300">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-muted font-light leading-relaxed">

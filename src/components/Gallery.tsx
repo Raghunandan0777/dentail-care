@@ -10,21 +10,25 @@ const galleryImages = [
     title: "Reception Area",
     desc: "A warm, premium welcome designed to put you at ease instantly.",
     src: "/images/reception.png",
+    aspectClass: "aspect-[4/3]"
   },
   {
     title: "Treatment Room",
     desc: "State-of-the-art clinic hygiene and comfortable modern chairs.",
     src: "/images/treatment.png",
+    aspectClass: "aspect-[3/4]"
   },
   {
     title: "Consultation Room",
     desc: "Private consultation spaces to discuss your personalized smile design plan.",
     src: "/images/consultation.png",
+    aspectClass: "aspect-[1/1]"
   },
   {
     title: "Advanced Equipment",
     desc: "Advanced 3D digital dental scans for highly precise diagnostic insights.",
     src: "/images/equipment.png",
+    aspectClass: "aspect-[4/5]"
   },
 ];
 
@@ -87,17 +91,17 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-10">
+        {/* Masonry Grid */}
+        <div className="columns-1 sm:columns-2 gap-6 lg:gap-8 space-y-6 lg:space-y-8">
           {galleryImages.map((image, idx) => (
             <motion.div
               key={image.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (idx % 2) * 0.1 }}
               onClick={() => setSelectedIdx(idx)}
-              className="group relative aspect-[16/10] rounded-[20px] sm:rounded-[28px] overflow-hidden bg-ivory cursor-pointer border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-500"
+              className={`group relative ${image.aspectClass} rounded-[20px] sm:rounded-[28px] overflow-hidden bg-ivory cursor-pointer border border-gray-100 shadow-card hover:shadow-premium transition-all duration-500 break-inside-avoid`}
             >
               {/* Image with slow zoom */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -106,7 +110,7 @@ export default function Gallery() {
                   alt={`${image.title} at Smile Signature Dental Clinic`}
                   fill
                   sizes="(max-width: 768px) 100vw, 600px"
-                  className="object-cover object-center scale-100 group-hover:scale-105"
+                  className="object-cover object-center scale-100 group-hover:scale-110"
                   style={{ transition: "transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)" }}
                   loading="lazy"
                 />

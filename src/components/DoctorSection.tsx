@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Award, GraduationCap, Clock, Calendar } from "lucide-react";
+import { Award, GraduationCap, Clock, Calendar, Globe, Star } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -121,31 +121,31 @@ export default function DoctorSection() {
 
           {/* Left Column — Doctor Image */}
           <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative w-full flex justify-center"
+            className="lg:col-span-5 relative w-full flex justify-center lg:justify-end"
           >
             <motion.div
               variants={slowFloat}
               animate="animate"
-              className="relative w-full max-w-[370px] aspect-[4/5] rounded-[32px] overflow-hidden shadow-premium border border-gray-100 bg-white group"
+              className="relative w-full max-w-[480px] aspect-[3/4] rounded-[32px] overflow-hidden shadow-[0_0_50px_-10px_rgba(37,99,235,0.4)] border border-primary/20 bg-white group z-10"
             >
               <Image
                 src="/images/doctor-portrait.png"
                 alt="Dr. Alexander Mercer, BDS, MDS - Head Dentist at Smile Signature Premium Dental Clinic"
                 fill
-                sizes="(max-width: 768px) 100vw, 370px"
-                className="object-cover object-center scale-102 group-hover:scale-100 transition-transform duration-[1.5s]"
+                sizes="(max-width: 768px) 100vw, 480px"
+                className="object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-[1.5s]"
               />
               {/* Overlay gradient */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-dark/30 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent pointer-events-none" />
             </motion.div>
 
             {/* Decorative frames */}
-            <div className="absolute inset-0 border border-primary/8 rounded-[36px] -m-3 pointer-events-none max-w-[370px] mx-auto" />
-            <div className="absolute inset-0 border border-primary/4 rounded-[42px] -m-6 pointer-events-none hidden sm:block max-w-[370px] mx-auto" />
+            <div className="absolute inset-0 border border-primary/15 rounded-[36px] -m-4 pointer-events-none max-w-[480px] mx-auto hidden sm:block z-0" />
+            <div className="absolute inset-0 border border-primary/5 rounded-[42px] -m-8 pointer-events-none hidden lg:block max-w-[480px] mx-auto z-0" />
           </motion.div>
 
           {/* Right Column — Info */}
@@ -176,29 +176,86 @@ export default function DoctorSection() {
               Dedicated to delivering exceptional dental care using modern techniques and a patient-first approach. Dr. Mercer is recognized for his precision in cosmetic smile design and advanced dental implant restorations.
             </p>
 
-            {/* Credentials */}
-            <div className="space-y-4 w-full mb-8">
-              {credentials.map((cred, idx) => {
-                const Icon = cred.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1, duration: 0.5 }}
-                    className="flex gap-4 items-start p-4 rounded-xl bg-white/60 border border-gray-100 shadow-card hover:shadow-card-hover hover:border-primary/10 transition-all duration-300"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary shrink-0">
-                      <Icon className="w-4.5 h-4.5" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif font-bold text-sm text-dark mb-0.5">{cred.title}</h4>
-                      <p className="text-xs text-muted font-medium">{cred.desc}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            {/* Extended Credentials Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="flex gap-3 items-start p-4 rounded-xl bg-white/60 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary shrink-0">
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-dark mb-0.5">Qualification</h4>
+                  <p className="text-xs text-muted font-medium">BDS, MDS (Orthodontics)</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex gap-3 items-start p-4 rounded-xl bg-white/60 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary shrink-0">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-dark mb-0.5">Specializations</h4>
+                  <p className="text-xs text-muted font-medium">Cosmetic & Implantology</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="flex gap-3 items-start p-4 rounded-xl bg-white/60 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary shrink-0">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-dark mb-0.5">Languages</h4>
+                  <p className="text-xs text-muted font-medium">English, Spanish, French</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="flex gap-3 items-start p-4 rounded-xl bg-white/60 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center text-primary shrink-0">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-dark mb-0.5">Clinic Timings</h4>
+                  <p className="text-xs text-muted font-medium">Mon - Sat: 9AM - 6PM</p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Memberships */}
+            <div className="w-full mb-8">
+              <h4 className="font-serif font-bold text-base text-dark mb-3">Professional Memberships</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sm text-muted font-medium">
+                  <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center"><Star className="w-2.5 h-2.5 text-primary fill-primary" /></div>
+                  American Dental Association (ADA)
+                </li>
+                <li className="flex items-center gap-2 text-sm text-muted font-medium">
+                  <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center"><Star className="w-2.5 h-2.5 text-primary fill-primary" /></div>
+                  International Congress of Oral Implantologists
+                </li>
+              </ul>
             </div>
 
             {/* Social Links */}

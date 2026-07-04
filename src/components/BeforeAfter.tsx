@@ -5,14 +5,71 @@ import Image from "next/image";
 import { MoveHorizontal, Sparkles, Check } from "lucide-react";
 import { motion } from "framer-motion";
 
+const cases = [
+  {
+    id: "makeover",
+    tabLabel: "Smile Makeover",
+    title: "Aesthetic Smile Restoration",
+    beforeImg: "/images/before-veneers.png",
+    afterImg: "/images/after-veneers.png",
+    params: [
+      { label: "Specialist", value: "Dr. Alexander Mercer" },
+      { label: "Treatment", value: "Porcelain Veneers" },
+      { label: "Visits", value: "2 Sessions (7 Days)" },
+      { label: "Patient Age", value: "29 Years" },
+    ],
+    narrative: "Our objective was to restore alignment symmetry and lift intrinsic staining without invasive reshaping. Using ultra-thin hand-finished veneers, we matched the natural translucency parameters of healthy enamel.",
+    benefits: [
+      "Minimal preparation veneers preserving 95%+ natural structure",
+      "Tailored shade matching for natural ivory translucency",
+      "Bespoke digital smile design aligning with facial symmetry"
+    ]
+  },
+  {
+    id: "implants",
+    tabLabel: "Dental Implants",
+    title: "Full Arch Restoration",
+    beforeImg: "/images/before-implants.png",
+    afterImg: "/images/after-implants.png",
+    params: [
+      { label: "Specialist", value: "Dr. Alexander Mercer" },
+      { label: "Treatment", value: "All-on-4 Implants" },
+      { label: "Visits", value: "4 Sessions (3 Months)" },
+      { label: "Patient Age", value: "54 Years" },
+    ],
+    narrative: "The patient presented with advanced periodontal disease and missing teeth. We utilized guided implant surgery for precise placement of titanium fixtures, restoring complete function and aesthetics.",
+    benefits: [
+      "Permanent fixed solution acting exactly like natural teeth",
+      "Prevents bone loss and preserves facial structure",
+      "Computer-guided precision for minimally invasive surgery"
+    ]
+  },
+  {
+    id: "whitening",
+    tabLabel: "Teeth Whitening",
+    title: "Laser Zoom Whitening",
+    beforeImg: "/images/before-whitening.png",
+    afterImg: "/images/after-whitening.png",
+    params: [
+      { label: "Specialist", value: "Dr. Sarah Jenkins" },
+      { label: "Treatment", value: "Laser Whitening" },
+      { label: "Visits", value: "1 Session (60 Mins)" },
+      { label: "Patient Age", value: "34 Years" },
+    ],
+    narrative: "A single 60-minute session was all it took to lift deep intrinsic stains caused by coffee and tea consumption, brightening the smile by up to 8 shades with zero sensitivity.",
+    benefits: [
+      "Instant results visible immediately after the session",
+      "Enamel-safe desensitizing gel formula",
+      "Long-lasting brightness with proper maintenance"
+    ]
+  }
+];
+
 export default function BeforeAfter() {
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [activeTab, setActiveTab] = useState(cases[0].id);
 
-  const benefits = [
-    "Minimal preparation veneers preserving 95%+ natural structure",
-    "Tailored shade matching for natural ivory translucency",
-    "Bespoke digital smile design aligning with facial symmetry"
-  ];
+  const activeCase = cases.find(c => c.id === activeTab) || cases[0];
 
   return (
     <section id="results" className="py-28 lg:py-36 bg-white relative overflow-hidden">
@@ -40,6 +97,26 @@ export default function BeforeAfter() {
           <p className="text-muted font-light max-w-md mx-auto text-sm md:text-base leading-relaxed">
             Witness the remarkable results of bespoke cosmetic dentistry and clinical precision.
           </p>
+
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {cases.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => {
+                  setActiveTab(c.id);
+                  setSliderPosition(50);
+                }}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  activeTab === c.id
+                    ? "blue-gradient text-white shadow-premium"
+                    : "bg-white text-muted border border-gray-200 hover:border-primary/30 hover:text-primary hover:bg-primary-50/50"
+                }`}
+              >
+                {c.tabLabel}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -55,38 +132,40 @@ export default function BeforeAfter() {
             {/* Slider Container */}
             <div className="relative w-full aspect-[4/3] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-premium border border-primary/8 select-none bg-gray-50">
 
-              {/* BEFORE Image */}
+              {/* AFTER Image (background — right side) */}
               <div className="absolute inset-0 w-full h-full">
                 <Image
-                  src="/images/before-veneers.png"
-                  alt="Smile Signature patient teeth before cosmetic veneer treatment"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, 700px"
-                  className="object-cover object-center pointer-events-none"
-                />
-                {/* Before Label */}
-                <div className="absolute bottom-6 left-6 z-[15] glass-card text-dark text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-full">
-                  Before Treatment
-                </div>
-              </div>
-
-              {/* AFTER Image */}
-              <div
-                className="absolute inset-0 w-full h-full overflow-hidden z-10"
-                style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
-              >
-                <Image
-                  src="/images/after-veneers.png"
-                  alt="Smile Signature patient teeth after cosmetic veneer treatment"
+                  key={`after-${activeCase.id}`}
+                  src={activeCase.afterImg}
+                  alt={`Patient after ${activeCase.tabLabel}`}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 700px"
                   className="object-cover object-center pointer-events-none"
                 />
                 {/* After Label */}
-                <div className="absolute bottom-6 left-6 z-[15] bg-primary/90 backdrop-blur-sm text-white text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-full whitespace-nowrap">
+                <div className="absolute bottom-6 right-6 z-[15] bg-primary/90 backdrop-blur-sm text-white text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-full whitespace-nowrap">
                   After Makeover ✨
+                </div>
+              </div>
+
+              {/* BEFORE Image (clipped overlay — left side) */}
+              <div
+                className="absolute inset-0 w-full h-full overflow-hidden z-10"
+                style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+              >
+                <Image
+                  key={`before-${activeCase.id}`}
+                  src={activeCase.beforeImg}
+                  alt={`Patient before ${activeCase.tabLabel}`}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  className="object-cover object-center pointer-events-none"
+                />
+                {/* Before Label */}
+                <div className="absolute bottom-6 left-6 z-[15] glass-card text-dark text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-full whitespace-nowrap">
+                  Before Treatment
                 </div>
               </div>
 
@@ -123,32 +202,27 @@ export default function BeforeAfter() {
 
           {/* Right Column — Case Study Details */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            key={`case-details-${activeCase.id}`}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
             className="lg:col-span-5 flex flex-col justify-center"
           >
             <div className="bg-ivory rounded-[20px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 border border-primary/5 shadow-premium">
               <div className="flex items-center gap-2 mb-4">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span className="text-xs font-bold uppercase tracking-widest text-primary">
-                  Case Study 01
+                  Case Study
                 </span>
               </div>
 
               <h3 className="font-serif font-bold text-2xl md:text-3xl text-dark mb-6">
-                Aesthetic Smile Restoration
+                {activeCase.title}
               </h3>
 
               {/* Case Parameters */}
               <div className="grid grid-cols-2 gap-y-4 gap-x-6 pb-6 mb-6 border-b border-primary/8 text-sm">
-                {[
-                  { label: "Specialist", value: "Dr. Alexander Mercer" },
-                  { label: "Treatment", value: "Porcelain Veneers" },
-                  { label: "Visits", value: "2 Sessions (7 Days)" },
-                  { label: "Patient Age", value: "29 Years" },
-                ].map((param, idx) => (
+                {activeCase.params.map((param, idx) => (
                   <div key={idx}>
                     <span className="text-xs font-bold text-muted uppercase tracking-wider block mb-1">
                       {param.label}
@@ -162,12 +236,12 @@ export default function BeforeAfter() {
 
               {/* Narrative */}
               <p className="text-muted font-light leading-relaxed text-sm mb-6">
-                &quot;Our objective was to restore alignment symmetry and lift intrinsic staining without invasive reshaping. Using ultra-thin hand-finished veneers, we matched the natural translucency parameters of healthy enamel.&quot;
+                &quot;{activeCase.narrative}&quot;
               </p>
 
               {/* Benefits */}
               <ul className="space-y-3.5">
-                {benefits.map((benefit, idx) => (
+                {activeCase.benefits.map((benefit, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-dark/80">
                     <span className="w-5 h-5 rounded-full bg-primary-50 flex items-center justify-center shrink-0 mt-0.5 border border-primary/10">
                       <Check className="w-3 h-3 text-primary" />

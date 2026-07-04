@@ -249,7 +249,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary/10 text-primary font-semibold text-xs tracking-widest uppercase mb-7 font-sans mx-auto lg:mx-0"
           >
             <span className="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            Premium Dental Care
+            Trusted by Families in Surat
           </motion.div>
 
           {/* ─── IMPROVED HEADING with Cormorant Garamond + Gold Accent ─── */}
@@ -305,27 +305,37 @@ export default function Hero() {
           {/* ─── IMPROVED CTA BUTTONS — Magnetic Hover + Ripple + Glow ─── */}
           <motion.div
             variants={slideUp}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 mb-16 w-full sm:w-auto font-sans mx-auto lg:mx-0"
+            className="flex flex-col items-center lg:items-start mb-16 w-full font-sans mx-auto lg:mx-0"
           >
-            <motion.a
-              ref={bookBtnRef}
-              href="#book-appointment"
-              whileTap={{ scale: 0.96 }}
-              className="magnetic-btn magnetic-btn-primary px-9 py-4.5 rounded-full blue-gradient text-white font-semibold text-xs tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn cursor-pointer"
-            >
-              <Calendar className="w-4 h-4" />
-              Book Appointment
-              <ArrowRight className="w-3.5 h-3.5" />
-            </motion.a>
-            <motion.a
-              ref={callBtnRef}
-              href="tel:+918866902356"
-              whileTap={{ scale: 0.96 }}
-              className="magnetic-btn magnetic-btn-secondary px-9 py-4.5 rounded-full border-2 border-dark/10 hover:border-primary hover:text-primary text-dark font-semibold text-xs tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2 bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 cursor-pointer"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              Call Now
-            </motion.a>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
+              <motion.a
+                ref={bookBtnRef}
+                href="#book-appointment"
+                whileTap={{ scale: 0.96 }}
+                className="magnetic-btn magnetic-btn-primary px-9 py-4.5 rounded-full blue-gradient text-white font-semibold text-xs tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shine-btn cursor-pointer"
+              >
+                <Calendar className="w-4 h-4" />
+                Book Appointment
+                <ArrowRight className="w-3.5 h-3.5" />
+              </motion.a>
+              <motion.a
+                ref={callBtnRef}
+                href="tel:+918866902356"
+                whileTap={{ scale: 0.96 }}
+                className="magnetic-btn magnetic-btn-secondary px-9 py-4.5 rounded-full border-2 border-dark/10 hover:border-primary hover:text-primary text-dark font-semibold text-xs tracking-widest text-center transition-all duration-300 flex items-center justify-center gap-2 bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                Call Now
+              </motion.a>
+            </div>
+            {/* Emergency Indicator */}
+            <p className="text-[11px] text-muted font-semibold uppercase tracking-widest mt-4 flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+              </span>
+              Emergency Appointments Available
+            </p>
           </motion.div>
 
           {/* ─── TRUST BADGES — Directly below CTA ─── */}

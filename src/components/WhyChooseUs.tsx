@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, Cpu, ShieldCheck, HeartHandshake, Zap, Headphones } from "lucide-react";
+import Image from "next/image";
 
 function Counter({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -36,31 +37,37 @@ export default function WhyChooseUs() {
       title: "Experienced Specialists",
       description: "Highly qualified dental experts committed to excellence and precision.",
       icon: Users,
+      image: "/images/doctor-portrait.png",
     },
     {
       title: "Latest Technology",
       description: "Advanced digital dentistry for ultra-precise diagnostics and results.",
       icon: Cpu,
+      image: "/images/equip-scanner.png",
     },
     {
       title: "Comfortable Experience",
       description: "Pain-free treatments in a relaxing, anxiety-free atmosphere.",
       icon: ShieldCheck,
+      image: "/images/treatment.png",
     },
     {
       title: "Personalized Care",
       description: "Customized treatment plans tailored to your specific smile goals.",
       icon: HeartHandshake,
+      image: "/images/consultation.png",
     },
     {
       title: "Emergency Support",
       description: "Immediate dental care available for urgent situations, when you need it most.",
       icon: Zap,
+      image: "/images/service-emergency.png",
     },
     {
       title: "Patient-First Approach",
       description: "Your comfort and well-being drive every decision we make.",
       icon: Headphones,
+      image: "/images/reception.png",
     },
   ];
 
@@ -99,7 +106,7 @@ export default function WhyChooseUs() {
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
@@ -109,32 +116,33 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.06 }}
-                whileHover={{ y: -10 }}
-                className="group relative p-6 sm:p-8 rounded-[16px] sm:rounded-[24px] bg-white border border-gray-100 hover:border-transparent shadow-card hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.25)] transition-all duration-500 cursor-default"
+                whileHover={{ y: -8 }}
+                className="group relative flex flex-col rounded-[24px] bg-white border border-gray-100/80 shadow-premium hover:shadow-premium-hover transition-all duration-500 overflow-hidden cursor-default"
               >
-                {/* Animated Background */}
-                <div className="absolute inset-0 rounded-[16px] sm:rounded-[24px] bg-gradient-to-br from-gray-50 to-white group-hover:from-primary/5 group-hover:to-primary/10 transition-colors duration-500 pointer-events-none" />
+                {/* Image Section */}
+                <div className="w-full aspect-[16/10] relative overflow-hidden bg-gray-100">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
+                  />
+                  {/* Subtle vignette/gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                </div>
 
-                {/* Gradient Border effect */}
-                <div 
-                  className="absolute inset-0 rounded-[16px] sm:rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
-                  style={{ 
-                    background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.4) 0%, rgba(37, 99, 235, 0.05) 100%)', 
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', 
-                    WebkitMaskComposite: 'xor', 
-                    maskComposite: 'exclude', 
-                    padding: '2px' 
-                  }} 
-                />
-
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-primary-50 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_16px_-4px_rgba(37,99,235,0.4)] transform group-hover:-translate-y-1 group-hover:rotate-[10deg] mb-6">
-                    <Icon className="w-6 h-6 transition-transform duration-500 group-hover:scale-110" />
+                {/* Content Section */}
+                <div className="p-6 sm:p-8 flex flex-col flex-grow relative">
+                  {/* Floating Icon */}
+                  <div className="absolute -top-7 right-6 w-14 h-14 rounded-2xl bg-white text-primary group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-all duration-500 shadow-[0_8px_20px_-6px_rgba(37,99,235,0.15)] group-hover:shadow-[0_8px_20px_-4px_rgba(37,99,235,0.4)] border border-gray-100 group-hover:border-primary transform group-hover:-translate-y-1">
+                    <Icon className="w-5.5 h-5.5 transition-transform duration-500 group-hover:scale-110" />
                   </div>
-                  <h3 className="font-serif font-bold text-xl text-dark mb-3 group-hover:text-primary transition-colors duration-300">
+
+                  <h3 className="font-serif font-bold text-xl text-dark mb-3 group-hover:text-primary transition-colors duration-300 pr-12">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-muted font-light leading-relaxed">
+                  <p className="text-sm text-muted font-light leading-relaxed flex-grow">
                     {feature.description}
                   </p>
                 </div>

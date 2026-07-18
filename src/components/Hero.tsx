@@ -423,8 +423,8 @@ export default function Hero() {
             style={{ transform: `translateY(${-parallaxY}px)` }}
           >
             <Image
-              src="/images/hero-dentist.png"
-              alt="Dr. Alexander Mercer smiling friendly in modern premium dental clinic"
+              src="/images/hero-dentist-checkup.png"
+              alt="Professional dentist conducting a gentle dental checkup on a relaxed patient in a modern premium clinic"
               fill
               sizes="(max-width: 768px) 100vw, 480px"
               className="object-cover object-center scale-102 hover:scale-100 transition-transform duration-[1.5s]"

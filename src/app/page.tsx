@@ -21,7 +21,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Smile Signature Premium Dental Clinic",
-    "image": "https://smilesignature.com/images/hero-dentist.png",
+    "image": "https://smilesignature.com/images/hero-dentist-checkup.png",
     "@id": "https://smilesignature.com/#dentist",
     "url": "https://smilesignature.com",
     "telephone": "+918866902356",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
+import Preloader from "@/components/Preloader";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -39,6 +40,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-white text-dark font-sans" suppressHydrationWarning>
+        <Preloader />
         {children}
       </body>
     </html>

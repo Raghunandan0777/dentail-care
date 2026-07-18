@@ -1,7 +1,6 @@
 {
   "mcpServers": {
     "jetro": {
-      "type": "stdio",
       "command": "C:\\Users\\Lenovo\\.jetro\\runtime\\node-win32-x64.exe",
       "args": [
         "C:\\Users\\Lenovo\\.jetro\\mcp-server\\index.js"

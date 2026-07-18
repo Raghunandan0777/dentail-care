@@ -253,6 +253,86 @@ export default function BeforeAfter() {
             </div>
           </motion.div>
         </div>
+
+        {/* Transformation Gallery Grid */}
+        <div className="mt-24 border-t border-gray-100 pt-16">
+          <div className="text-center mb-12">
+            <h3 className="font-serif font-bold text-2xl md:text-3xl text-dark">
+              Transformation Gallery
+            </h3>
+            <p className="text-sm text-muted font-light mt-2">
+              Browse our gallery of successful smile restorations and treatment results.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {cases.map((c) => (
+              <motion.div
+                key={c.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+                whileHover={{ y: -6 }}
+                onClick={() => {
+                  setActiveTab(c.id);
+                  setSliderPosition(50);
+                  document.getElementById("results")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`group cursor-pointer rounded-2xl bg-white border ${
+                  activeTab === c.id ? "border-primary shadow-premium" : "border-gray-100 shadow-card hover:shadow-premium"
+                } transition-all duration-500 overflow-hidden`}
+              >
+                {/* Side-by-Side Images */}
+                <div className="grid grid-cols-2 gap-0.5 bg-gray-100 aspect-[16/10] relative overflow-hidden">
+                  {/* Before Thumbnail */}
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={c.beforeImg}
+                      alt={`Before ${c.tabLabel}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute top-2 left-2 bg-dark/60 backdrop-blur-sm text-[9px] font-bold text-white uppercase tracking-widest px-2 py-0.5 rounded">
+                      Before
+                    </div>
+                  </div>
+                  {/* After Thumbnail */}
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={c.afterImg}
+                      alt={`After ${c.tabLabel}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-2 right-2 bg-primary/95 backdrop-blur-sm text-[9px] font-bold text-white uppercase tracking-widest px-2 py-0.5 rounded">
+                      After ✨
+                    </div>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="p-5">
+                  <span className="text-[10px] font-bold text-primary uppercase tracking-widest bg-primary-50 px-2.5 py-1 rounded-md border border-primary/5 inline-block mb-3">
+                    {c.params[1].value}
+                  </span>
+                  <h4 className="font-serif font-bold text-lg text-dark group-hover:text-primary transition-colors duration-300 mb-1">
+                    {c.title}
+                  </h4>
+                  <p className="text-xs text-muted font-light line-clamp-2 leading-relaxed mb-4">
+                    {c.narrative}
+                  </p>
+                  <div className="flex items-center justify-between text-xs font-semibold text-primary group-hover:underline">
+                    <span>Compare Case Study</span>
+                    <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
